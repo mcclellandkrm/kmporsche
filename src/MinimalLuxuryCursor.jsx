@@ -9,20 +9,34 @@ const CURSOR_SHADOW = '0 2px 12px 0 #00ffc299';
 const MinimalLuxuryCursor = () => {
   const [pos, setPos] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const [hovering, setHovering] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
   const requestRef = useRef();
   const target = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const cursor = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
 
+  // Hide cursor on mobile (touch devices or small screens)
   useEffect(() => {
+    const check = () => {
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setShowCursor(!isTouch && window.innerWidth > 700);
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  useEffect(() => {
+    if (!showCursor) return;
     const move = (e) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
     };
     window.addEventListener('mousemove', move);
     return () => window.removeEventListener('mousemove', move);
-  }, []);
+  }, [showCursor]);
 
   useEffect(() => {
+    if (!showCursor) return;
     // Detect hover on links or interactive elements
     const onMove = (e) => {
       let el = document.elementFromPoint(e.clientX, e.clientY);
@@ -43,9 +57,10 @@ const MinimalLuxuryCursor = () => {
     };
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
-  }, []);
+  }, [showCursor]);
 
   useEffect(() => {
+    if (!showCursor) return;
     // Animate cursor position
     const animate = () => {
       cursor.current.x += (target.current.x - cursor.current.x) * 0.22;
@@ -55,15 +70,18 @@ const MinimalLuxuryCursor = () => {
     };
     animate();
     return () => cancelAnimationFrame(requestRef.current);
-  }, []);
+  }, [showCursor]);
 
   // Hide the default cursor
   useEffect(() => {
+    if (!showCursor) return;
     document.body.style.cursor = 'none';
     return () => {
       document.body.style.cursor = '';
     };
-  }, []);
+  }, [showCursor]);
+
+  if (!showCursor) return null;
 
   return (
     <div

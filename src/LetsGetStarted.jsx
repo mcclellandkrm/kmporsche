@@ -62,21 +62,22 @@ const LetsGetStarted = () => {
   <h2 className="text-5xl md:text-7xl font-extrabold font-heading text-center mb-4 text-offwhite/90 tracking-tight leading-tight">let’s get started</h2>
   <p className="text-xl md:text-2xl font-light text-offwhite/90 text-center mb-10 leading-relaxed tracking-wide">It’s time to delight your customers and accelerate your business.</p>
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex flex-col">
+          {/* Name and Email: stack vertically on mobile, side-by-side on md+ */}
+          <div className="flex flex-col w-full md:col-span-1">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Your Name</label>
-            <input name="name" value={form.name} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60" />
+            <input name="name" value={form.name} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full" />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full md:col-span-1">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Your Email</label>
-            <input name="email" value={form.email} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60" />
+            <input name="email" value={form.email} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full" />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full md:col-span-1">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Company Website</label>
-            <input name="website" value={form.website} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60" />
+            <input name="website" value={form.website} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full" />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full md:col-span-1">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Budget (USD)</label>
-            <select name="budget" value={form.budget} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none">
+            <select name="budget" value={form.budget} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none w-full">
               {budgetOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
             </select>
           </div>
@@ -88,16 +89,29 @@ const LetsGetStarted = () => {
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Where did you hear about us?</label>
             <input name="heard" value={form.heard} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60" />
           </div>
+          {/* Date picker: show only on desktop, use text input on mobile */}
           <div className="col-span-2 flex flex-col">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Schedule a call back</label>
-            <DatePicker
-              selected={form.date}
-              onChange={date => setForm(f => ({ ...f, date }))}
-              className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60"
-              placeholderText="Pick a date and time"
-              showTimeSelect
-              dateFormat="Pp"
-            />
+            <div className="hidden md:block">
+              <DatePicker
+                selected={form.date}
+                onChange={date => setForm(f => ({ ...f, date }))}
+                className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full"
+                placeholderText="Pick a date and time"
+                showTimeSelect
+                dateFormat="Pp"
+              />
+            </div>
+            <div className="block md:hidden">
+              <input
+                type="text"
+                name="date"
+                value={form.date ? form.date.toLocaleString() : ''}
+                onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
+                className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full"
+                placeholder="Suggest a date/time (optional)"
+              />
+            </div>
           </div>
           <div className="col-span-2 flex justify-center mt-4">
             <button
