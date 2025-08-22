@@ -1,0 +1,95 @@
+/* Animated gradient for Bento CTA cards */
+.animated-gradient-card .animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradientMove 4s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+#root {
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Luxury glassy card transitions and gradients */
+.lux-glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.65) 60%, rgba(230,230,255,0.35) 100%);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 1.5px 8px 0 rgba(80,80,120,0.10);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  border: 1.5px solid rgba(255,255,255,0.28);
+  transition: box-shadow 0.6s cubic-bezier(.4,0,.2,1) 0.12s, background 0.7s cubic-bezier(.4,0,.2,1) 0.08s, border-color 0.5s cubic-bezier(.4,0,.2,1) 0.1s, transform 0.5s cubic-bezier(.4,0,.2,1) 0.1s;
+}
+.lux-glass:hover, .lux-glass:focus {
+  box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.22), 0 4px 24px 0 rgba(80,80,120,0.13);
+  background: linear-gradient(120deg, rgba(255,255,255,0.80) 60%, rgba(200,210,255,0.45) 100%);
+  border-color: rgba(255,255,255,0.38);
+  transform: translateY(-2px) scale(1.012);
+}
+
+/* For hero/feature images */
+.lux-hero {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 1.5px 8px 0 rgba(80,80,120,0.10);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: box-shadow 0.7s cubic-bezier(.4,0,.2,1) 0.12s, filter 0.5s cubic-bezier(.4,0,.2,1) 0.1s;
+}
+.lux-hero:hover, .lux-hero:focus {
+  box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.22), 0 8px 32px 0 rgba(80,80,120,0.13);
+  filter: brightness(1.04) saturate(1.08);
+}
+
+/* Subtle fade-in for cards */
+.lux-fadein {
+  opacity: 0;
+  animation: luxFadeIn 1.1s cubic-bezier(.4,0,.2,1) 0.18s forwards;
+}
+@keyframes luxFadeIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
