@@ -61,21 +61,21 @@ const LetsGetStarted = () => {
     <div className="max-w-3xl w-full bg-charcoal/90 rounded-3xl shadow-2xl p-8 md:p-16 mx-auto relative border border-offwhite/10">
   <h2 className="text-5xl md:text-7xl font-extrabold font-heading text-center mb-4 text-offwhite/90 tracking-tight leading-tight">let’s get started</h2>
   <p className="text-xl md:text-2xl font-light text-offwhite/90 text-center mb-10 leading-relaxed tracking-wide">It’s time to delight your customers and accelerate your business.</p>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <form className="flex flex-col gap-6">
           {/* Name and Email: stack vertically on mobile, side-by-side on md+ */}
-          <div className="flex flex-col w-full md:col-span-1">
+          <div className="flex flex-col w-full">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Your Name</label>
             <input name="name" value={form.name} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full" />
           </div>
-          <div className="flex flex-col w-full md:col-span-1">
+          <div className="flex flex-col w-full">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Your Email</label>
             <input name="email" value={form.email} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full" />
           </div>
-          <div className="flex flex-col w-full md:col-span-1">
+          <div className="flex flex-col w-full">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Company Website</label>
             <input name="website" value={form.website} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none placeholder:text-offwhite/60 w-full" />
           </div>
-          <div className="flex flex-col w-full md:col-span-1">
+          <div className="flex flex-col w-full">
             <label className="uppercase text-xs font-bold text-offwhite/80 mb-2">Budget (USD)</label>
             <select name="budget" value={form.budget} onChange={handleChange} className="rounded-xl bg-offwhite/10 border border-offwhite/20 focus:border-burgundy focus:ring-2 focus:ring-burgundy text-offwhite px-4 py-3 transition-all duration-200 outline-none w-full">
               {budgetOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}

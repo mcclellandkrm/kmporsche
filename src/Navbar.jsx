@@ -4,11 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   // Close dropdown on navigation
   const handleDropdownLink = (to) => {
     setDropdownOpen(false);
+    setMobileMenuOpen(false);
     navigate(to);
   };
 
@@ -59,10 +61,65 @@ const Navbar = () => {
           Get Started
         </Link>
       </div>
-      <button className="md:hidden p-2 rounded hover:bg-offwhite/10">
-        <span className="sr-only">Open menu</span>
-        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-offwhite/80" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <button
+        className="md:hidden p-2 rounded hover:bg-offwhite/10"
+        onClick={() => setMobileMenuOpen((v) => !v)}
+        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={mobileMenuOpen}
+      >
+        <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
+        {mobileMenuOpen ? (
+          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-offwhite/80" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+        ) : (
+          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-offwhite/80" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        )}
       </button>
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[999] bg-black/70 flex flex-col items-end md:hidden" onClick={() => setMobileMenuOpen(false)}>
+          <nav
+            className="w-4/5 max-w-xs bg-charcoal/95 border-l border-offwhite/10 h-full shadow-2xl flex flex-col gap-2 p-8 pt-16 relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 p-2 rounded hover:bg-offwhite/10"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-offwhite/80" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+            </button>
+            <Link to="/" className="block py-3 px-2 text-offwhite/90 text-lg font-bold hover:text-accent/80 transition" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <button
+              className="block py-3 px-2 text-offwhite/90 text-lg font-bold text-left hover:text-accent/80 transition"
+              onClick={() => handleDropdownLink('/business-development')}
+            >Business Development</button>
+            <button
+              className="block py-3 px-2 text-offwhite/90 text-lg font-bold text-left hover:text-accent/80 transition"
+              onClick={() => handleDropdownLink('/operational-efficiency')}
+            >Operational Efficiency</button>
+            <button
+              className="block py-3 px-2 text-offwhite/90 text-lg font-bold text-left hover:text-accent/80 transition"
+              onClick={() => handleDropdownLink('/customer-experience')}
+            >Customer Experience</button>
+            <button
+              className="block py-3 px-2 text-offwhite/90 text-lg font-bold text-left hover:text-accent/80 transition"
+              onClick={() => handleDropdownLink('/sector-applications')}
+            >Sector Applications</button>
+            <Link to="/contact" className="block py-3 px-2 text-offwhite/90 text-lg font-bold hover:text-accent/80 transition" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            <Link
+              to="/contact"
+              className="mt-6 px-5 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-offwhite/30 text-base font-bold text-offwhite shadow-lg hover:bg-white/20 hover:border-navy/60 hover:shadow-2xl hover:scale-105 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-navy/40"
+              style={{
+                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                letterSpacing: '0.04em',
+              }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Get Started
+            </Link>
+          </nav>
+        </div>
+      )}
     </nav>
   </header>
   );
