@@ -3,8 +3,8 @@ import React from "react";
 const caseStudies = [
   {
     logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    name: "Microsoft Flagship Store",
-    quote: "The virtual tour experience was so immersive, our clients felt like they were there in person. It’s transformed our sales process.",
+    name: "Limavady High School",
+    quote: "The virtual tour experience is in such high quality. Parents and future students love having access to their new future school. It’s changes several process.",
     person: "Sarah L., Store Manager",
     image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80",
     results: [

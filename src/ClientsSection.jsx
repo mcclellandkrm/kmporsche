@@ -2,24 +2,25 @@ import React, { useEffect, useRef } from "react";
 
 const logos = [
   [
-    "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",
+    "/decathlon-logo.svg",
+    "/hilti-logo.svg",
+    "/aston-martin-logo.svg",
   ],
   [
-    "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+    "/aston-martin-logo.svg",
+    "/sse-logo.svg",
   ],
   [
-    "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/6/6e/Amazon_logo.svg",
+    "/toyota-logo.svg",
+    "/ni-screen-logo.svg",
   ],
   [
-    "https://upload.wikimedia.org/wikipedia/commons/0/02/Stack_Overflow_logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg",
+    "/fitzwilliam-logo.svg",
+    "/ramada-logo.svg",
   ],
   [
-    "https://upload.wikimedia.org/wikipedia/commons/5/5e/Instagram_logo_2016.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/4/4e/Pinterest_Logo.svg",
+    "/education-logo.svg",
+    "/belfast-logo.svg",
   ],
 ];
 
